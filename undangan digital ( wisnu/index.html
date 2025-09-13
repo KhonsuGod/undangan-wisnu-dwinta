@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wisnu & Dwinta — Undangan Digital</title>
+  <meta name="description" content="Undangan digital Gen-Z: animasi, countdown, lokasi, RSVP WhatsApp, galeri, buku tamu.">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#0a0a0b; --muted:#b7c0d2;
+      --glass:rgba(255,255,255,.09);
+      --stroke:#334155;
+      --pill:#0ea5e9; --pill2:#a78bfa; --pill3:#22d3ee;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{
+      font-family:"Space Grotesk",system-ui;
+      color:#eaf0ff;
+      background:
+        radial-gradient(1200px 800px at 10% -10%,#a78bfa33 0%,transparent 60%),
+        radial-gradient(900px 600px at 100% 20%,#22d3ee33 0%,transparent 60%),
+        radial-gradient(900px 600px at 0% 100%,#f472b633 0%,transparent 60%),
+        linear-gradient(120deg,#0c1022,#0b0f1d,#0c1022);
+      background-size:400% 400%;
+      animation:bgShift 18s ease-in-out infinite;
+      overflow-x:hidden;
+    }
+    @keyframes bgShift{
+      0%,100%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+    }
+
+    /* Layout */
+    .wrap{max-width:1000px;margin:0 auto;padding:22px}
+    header{display:flex;justify-content:space-between;align-items:center}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.3px}
+    .dot{width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,#a78bfa,#22d3ee);box-shadow:0 0 16px #22d3eeaa}
+    .chip{border:1px solid var(--stroke);background:rgba(255,255,255,.05);backdrop-filter:blur(10px);border-radius:999px;padding:8px 14px;font-size:12px}
+
+    .hero{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:center;padding:30px 0}
+    .card{background:var(--glass);border:1px solid var(--stroke);backdrop-filter:blur(14px);border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(3,8,23,.35)}
+    .headline{font-family:"Playfair Display",serif;font-size:clamp(40px,8vw,72px);line-height:1.02;margin:6px 0}
+    .names{font-family:"Playfair Display",serif;font-size:clamp(28px,6.5vw,50px)}
+    .lead{color:var(--muted)}
+
+    .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .btn{display:inline-flex;gap:8px;align-items:center;padding:12px 18px;border-radius:999px;font-weight:700;border:0;cursor:pointer;transform:translateY(0);transition:.25s ease}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+    .primary{background:linear-gradient(135deg,var(--pill),var(--pill3));color:#031318;box-shadow:0 10px 30px #06b6d455}
+    .ghost{background:transparent;border:1px solid var(--stroke);color:#e5e7eb}
+
+    .count{display:flex;gap:10px;margin-top:12px}
+    .box{min-width:78px;text-align:center;border-radius:16px;border:1px solid #374151;background:rgba(255,255,255,.07);padding:12px;box-shadow:inset 0 0 20px rgba(255,255,255,.03)}
+    .num{font-weight:800;font-size:26px}
+    .tag{display:inline-block;border:1px solid #374151;background:rgba(255,255,255,.08);padding:6px 10px;border-radius:999px;color:#cbd5e1;font-size:12px}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .tile{background:rgba(255,255,255,.08);border:1px solid #3a4356;border-radius:16px;padding:18px}
+    .tile h3{margin:0 0 6px;font-size:18px}
+    .muted{color:#b3bdcb}
+
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .gallery img{width:100%;height:100%;object-fit:cover;border-radius:16px;border:1px solid #2d3550;transform:translateY(0);transition:transform .25s ease}
+    .gallery img:hover{transform:translateY(-4px)}
+
+    footer{margin:26px 0;text-align:center;color:#aab4c5;font-size:14px}
+
+    /* Floating blobs + confetti dots */
+    .blob{position:absolute;filter:blur(38px);opacity:.55;z-index:-1;animation:float 16s ease-in-out infinite}
+    .b1{width:300px;height:300px;background:#a78bfacc;top:-60px;left:-40px;border-radius:50%}
+    .b2{width:340px;height:340px;background:#22d3eeaa;bottom:-80px;right:-30px;border-radius:40% 60% 55% 45%/60% 40% 60% 40%;animation-duration:20s}
+    .b3{width:260px;height:260px;background:#f472b6aa;top:35%;left:-90px;border-radius:60%;animation-duration:18s}
+    @keyframes float{
+      0%,100%{transform:translateY(0) translateX(0) rotate(0)}
+      50%{transform:translateY(-18px) translateX(8px) rotate(3deg)}
+    }
+
+    /* Reveal on scroll */
+    .reveal{opacity:0;transform:translateY(14px);transition:700ms ease}
+    .reveal.show{opacity:1;transform:none}
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="reveal">
+      <div class="brand"><span class="dot"></span> Undangan Digital</div>
+      <a class="chip" href="#rsvp">RSVP</a>
+    </header>
+
+    <section class="hero">
+      <div class="b1 blob"></div><div class="b2 blob"></div><div class="b3 blob"></div>
+
+      <!-- LEFT -->
+      <div class="card reveal">
+        <span class="tag">✨ Dengan memohon rahmat Tuhan Yang Maha Esa</span>
+        <h1 class="headline">Akad & Resepsi</h1>
+        <div class="names">Wisnu & Dwinta</div>
+        <p class="lead">Sabtu, <strong>23 Agustus 2025</strong> · 10.00 WIB — selesai</p>
+
+        <div class="count" id="count">
+          <div class="box"><div class="num" id="d">0</div><div class="muted">Hari</div></div>
+          <div class="box"><div class="num" id="h">0</div><div class="muted">Jam</div></div>
+          <div class="box"><div class="num" id="m">0</div><div class="muted">Menit</div></div>
+          <div class="box"><div class="num" id="s">0</div><div class="muted">Detik</div></div>
+        </div>
+
+        <div class="btns">
+          <a class="btn primary" href="https://wa.me/6281314604337?text=Halo%2C%20saya%20konfirmasi%20kehadiran%20untuk%20Wisnu%20%26%20Dwinta%20🙏" target="_blank" rel="noopener">📲 Konfirmasi via WhatsApp</a>
+          <a class="btn ghost" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad%20%26%20Resepsi%20Wisnu%20%26%20Dwinta&dates=20250823T030000Z/20250823T060000Z&details=Undangan%20Digital&location=Grand%20Hall%20Cipondoh" target="_blank" rel="noopener">🗓️ Simpan ke Kalender</a>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="card reveal">
+        <div class="grid">
+          <div class="tile reveal">
+            <h3>🕒 Waktu</h3>
+            <div class="muted">Sabtu, 23 Agustus 2025<br>10.00 WIB — selesai</div>
+          </div>
+          <div class="tile reveal">
+            <h3>📍 Lokasi</h3>
+            <div class="muted">Grand Hall Cipondoh, Tangerang</div>
+            <p style="margin-top:8px">
+              <a class="chip" href="https://maps.google.com/?q=Grand%20Hall%20Cipondoh" target="_blank" rel="noopener">Lihat Peta</a>
+            </p>
+          </div>
+          <div class="tile reveal">
+            <h3>💌 Amplop Digital</h3>
+            <div class="muted">(opsional) QRIS/No.Rek — tampil saat diminta</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:10px">
+      <h3 style="margin:0 0 8px">📷 Galeri</h3>
+      <div class="gallery">
+        <img alt="Foto 1" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop">
+        <img alt="Foto 2" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop">
+        <img alt="Foto 3" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop">
+      </div>
+    </section>
+
+    <section id="rsvp" class="card reveal" style="margin-top:10px">
+      <h3 style="margin:0 0 8px">📝 Buku Tamu</h3>
+      <p class="muted" style="margin-top:4px">Tinggalkan ucapan terbaikmu melalui WhatsApp. Terima kasih! 🤍</p>
+      <p style="margin-top:10px">
+        <a class="btn primary" href="https://wa.me/6281314604337?text=Selamat%20untuk%20Wisnu%20%26%20Dwinta%21%20💐" target="_blank" rel="noopener">Kirim Ucapan</a>
+      </p>
+    </section>
+
+    <footer class="reveal">
+      © 2025 — <strong>Undangan Digital by Khonsu Socials</strong>. Dibuat dengan cinta, mobile-first & clean UI.
+    </footer>
+  </div>
+
+  <script>
+    // Countdown ke 23 Agustus 2025 10:00 WIB (WIB = UTC+7 => 03:00Z)
+    const target = new Date('2025-08-23T03:00:00Z').getTime();
+    const pad = n => String(n).padStart(2,'0');
+    setInterval(()=>{
+      const now = Date.now();
+      let diff = Math.max(0, target - now);
+      const d = Math.floor(diff/86400000); diff -= d*86400000;
+      const h = Math.floor(diff/3600000);  diff -= h*3600000;
+      const m = Math.floor(diff/60000);    diff -= m*60000;
+      const s = Math.floor(diff/1000);
+      document.getElementById('d').textContent = d;
+      document.getElementById('h').textContent = pad(h);
+      document.getElementById('m').textContent = pad(m);
+      document.getElementById('s').textContent = pad(s);
+    }, 1000);
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
